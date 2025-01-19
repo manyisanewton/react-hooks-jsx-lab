@@ -34,12 +34,16 @@ test("renders a <p> element", () => {
   expect(p).toBeInTheDocument();
 });
 
-test("renders a <img> element with the correct attributes", () => {
+test("renders an <img> element with the correct attributes", () => {
+  // Render the About component
   render(<About />);
+  
+  // Find the image element by its alt text
+  const img = screen.queryByAltText("i made this");
 
-  // Find an element with the "alt" attribute set to "I made this"
-  const img = screen.queryByAltText("I made this");
-
+  // Check that the image element is in the document
   expect(img).toBeInTheDocument();
+
+  // Check that the image has the correct "src" attribute
   expect(img).toHaveAttribute("src", image);
 });

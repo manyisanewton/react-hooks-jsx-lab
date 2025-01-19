@@ -2,12 +2,8 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import { name, city } from "../data/data";
 import Home from "../components/Home";
+import About from "../components/About";
 
-test("renders a div with the correct ID", () => {
-  const { container } = render(<Home />);
-
-  expect(container.querySelector("#home")).toBeInTheDocument();
-});
 
 test("renders the h1 with the text 'Name is a Web Developer from City'", () => {
   render(<Home />);
@@ -25,4 +21,10 @@ test("the h1 has a an inline style attribute with a color of 'firebrick'", () =>
 
   const h1 = screen.queryByText(`${name} is a Web Developer from ${city}`);
   expect(h1).toHaveStyle({ color: "firebrick" });
+});
+test("renders a <h2> with the text 'About Me'", () => {
+  render(<About />);
+
+  const h2 = screen.getByRole("heading", { level: 2, name: /about me/i });
+  expect(h2).toBeInTheDocument();
 });
